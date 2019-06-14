@@ -4,4 +4,6 @@
     <item name="id_league_badge" type="id"/>
     <item name="id_league_desc" type="id"/>
     <item name="rvLeague" type="id"/>
+    <item name="id_league_id" type="id"/>
+    <item name="progress_bar_main_screen" type="id"/>
 </resources>
