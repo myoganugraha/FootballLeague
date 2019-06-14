@@ -13,14 +13,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".View.MatchDetail.MatchDetail">
+        <activity android:name=".view.MatchDetail.MatchDetail">
         </activity>
-        <activity android:name=".View.SearchResult.SearchResult">
+        <activity android:name=".view.SearchResult.SearchResult">
         </activity>
         <activity
-                android:name=".View.LeagueDetail.LeagueDetail"
+                android:name=".view.LeagueDetail.LeagueDetail"
                 android:theme="@style/AppThemeNoTitle"/>
-        <activity android:name=".View.Main.MainActivity">
+        <activity android:name=".view.Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

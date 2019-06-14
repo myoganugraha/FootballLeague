@@ -40,13 +40,24 @@
                     android:gravity="center"
                     android:layout_margin="5dp">
 
-                <TextView
-                        android:id="@+id/tv_home_team_match_detail"
+                <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:maxLines="2"
-                        android:text="@string/dummy_home_team_name"/>
+                        android:orientation="vertical">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/civ_home_team_detail_match"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"/>
+
+                    <TextView
+                            android:id="@+id/tv_home_team_match_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:maxLines="2"
+                            android:gravity="center"
+                            android:text="@string/dummy_home_team_name"/>
+                </LinearLayout>
 
                 <TextView
                         android:id="@+id/tv_score_home_team_match_detail"
@@ -73,15 +84,27 @@
                         android:textSize="24sp"
                         android:text="@string/dummy_score"/>
 
-                <TextView
-                        android:id="@+id/tv_away_team_match_detail"
+                <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:textStyle="bold"
-                        android:maxLines="2"
-                        android:textAlignment="center"
-                        android:text="@string/dummy_away_team_name"/>
+                        android:orientation="vertical">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/civ_away_team_detail_match"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"/>
+
+                    <TextView
+                            android:id="@+id/tv_away_team_match_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"
+                            android:maxLines="2"
+                            android:textAlignment="center"
+                            android:text="@string/dummy_away_team_name"/>
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <View
