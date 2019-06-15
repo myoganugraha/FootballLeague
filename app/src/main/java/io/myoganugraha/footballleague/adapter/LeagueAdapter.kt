@@ -30,11 +30,7 @@ class LeagueAdapter(private var list: MutableList<LeagueModel>, private var list
         override val containerView: View
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindItem(leagueModel: LeagueModel, listener: (LeagueModel) -> Unit) {
-            if (leagueModel.leagueImage!=null){
-                leagueModel.leagueImage.let { Picasso.get().load(it).into(itemView.findViewById<ImageView>(R.id.id_league_badge)) }
-            }else{
-                Picasso.get().load(R.drawable.ic_launcher_background).into(itemView.findViewById<ImageView>(R.id.id_league_badge))
-            }
+            Picasso.get().load(leagueModel.leagueImage ?: R.drawable.ic_launcher_background).into(itemView.findViewById<ImageView>(R.id.id_league_badge))
             itemView.findViewById<TextView>(R.id.id_league_name).text = leagueModel.leagueName
             itemView.setOnClickListener { listener(leagueModel) }
         }

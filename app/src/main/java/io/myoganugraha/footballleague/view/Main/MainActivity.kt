@@ -3,6 +3,8 @@ package io.myoganugraha.footballleague.view.Main
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +14,7 @@ import io.myoganugraha.footballleague.adapter.LeagueAdapter
 import io.myoganugraha.footballleague.model.LeagueModel
 import io.myoganugraha.footballleague.R
 import io.myoganugraha.footballleague.utils.LeaguePreferences
+import io.myoganugraha.footballleague.view.Favorite.Favorite
 import io.myoganugraha.footballleague.view.LeagueDetail.LeagueDetail
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -20,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     private var leagueItem: MutableList<LeagueModel> = mutableListOf()
     private lateinit var leaguePreferences: LeaguePreferences
+
+
+    private var menuItem: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,5 +98,25 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("leagueName", league.leagueName)
         leaguePreferences.saveLeagueID(league.leagueID)
         startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_activity_menu, menu)
+        menuItem = menu
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+
+            R.id.favorite_main_activity -> {
+                startActivity<Favorite>()
+                true
+            } else -> super.onOptionsItemSelected(item)
+        }
     }
 }

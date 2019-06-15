@@ -2,7 +2,7 @@ package io.myoganugraha.footballleague.utils
 
 import java.text.SimpleDateFormat
 
-class DateParser() {
+class DateParser {
 
     fun parser(date: String) : String {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")

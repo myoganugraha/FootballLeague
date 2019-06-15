@@ -41,7 +41,7 @@ data class Match(
     val strAwayLineupGoalkeeper: String,
     @SerializedName("strAwayLineupMidfield")
     val strAwayLineupMidfield: String,
-    @SerializedName("strAwayLineupSubtitutes")
+    @SerializedName("strAwayLineupSubstitutes")
     val strAwayLineupSubstitutes: String,
     @SerializedName("strAwayRedCards")
     val strAwayRedCards: String? = "0",
@@ -79,7 +79,7 @@ data class Match(
     val strHomeLineupGoalkeeper: String,
     @SerializedName("strHomeLineupMidfield")
     val strHomeLineupMidfield: String,
-    @SerializedName("strHomeLineupSubtitutes")
+    @SerializedName("strHomeLineupSubstitutes")
     val strHomeLineupSubstitutes: String,
     @SerializedName("strHomeRedCards")
     val strHomeRedCards: String? = "0",

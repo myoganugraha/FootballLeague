@@ -61,11 +61,11 @@ class NextMatch : Fragment(), NextMatchView {
     }
 
     override fun showLoading() {
-        progressBar!!.visibility = View.VISIBLE
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        progressBar!!.visibility = View.GONE
+        progressBar.visibility = View.GONE
     }
 
     override fun showNextMatch(data: MutableList<Match>) {
@@ -73,12 +73,12 @@ class NextMatch : Fragment(), NextMatchView {
         match.addAll(data)
 
         nextMatchAdapter = MatchAdapter(match, {match: Match ->  onItemClicked(match)})
-        rvNextsMatch!!.adapter = nextMatchAdapter
-        rvNextsMatch!!.setHasFixedSize(true)
+        rvNextsMatch.adapter = nextMatchAdapter
+        rvNextsMatch.setHasFixedSize(true)
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.activity)
 
-        rvNextsMatch!!.layoutManager = layoutManager
+        rvNextsMatch.layoutManager = layoutManager
         nextMatchAdapter.notifyDataSetChanged()
     }
 

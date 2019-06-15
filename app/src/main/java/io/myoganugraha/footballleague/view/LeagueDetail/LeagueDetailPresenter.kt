@@ -21,7 +21,6 @@ class LeagueDetailPresenter(private  var view: LeagueDetailView, private var ret
             }
 
             override fun onResponse(call: Call<LeagueResponse>, response: Response<LeagueResponse>) {
-                Log.d("cek data", response.body().toString())
                 val data: League = response.body()?.leagues!![0]
                 view.showLeagueDetail(data)
                 view.hideLoading()

@@ -13,10 +13,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.MatchDetail.MatchDetail">
+        <activity android:name=".view.Favorite.Favorite">
         </activity>
-        <activity android:name=".view.SearchResult.SearchResult">
-        </activity>
+        <activity android:name=".view.MatchDetail.MatchDetail"/>
+        <activity android:name=".view.SearchResult.SearchResult"/>
         <activity
                 android:name=".view.LeagueDetail.LeagueDetail"
                 android:theme="@style/AppThemeNoTitle"/>

@@ -34,7 +34,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.cardview.widget.CardView
-            android:id="@+id/cardview_league_detail"
+            android:id="@+id/cardviewLeagueDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -63,18 +63,16 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager_league_detail"
+            android:id="@+id/viewpagerLeagueDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
 
-            android:layout_below="@id/cardview_league_detail">
+            android:layout_below="@id/cardviewLeagueDetail">
         <com.google.android.material.tabs.TabLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tabLayout">
-
-        </com.google.android.material.tabs.TabLayout>
+                android:id="@+id/tabLayout"/>
 
     </androidx.viewpager.widget.ViewPager>
 

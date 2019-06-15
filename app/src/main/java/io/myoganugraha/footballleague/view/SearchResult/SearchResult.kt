@@ -34,9 +34,10 @@ class SearchResult : AppCompatActivity(), SearchResultView  {
 
         query = intent.getStringExtra("query")
 
-        val actionbar = supportActionBar
-        actionbar!!.setDisplayHomeAsUpEnabled(true)
-        actionbar!!.title = query
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.title = query
+        }
 
         initComponents()
     }
@@ -69,12 +70,12 @@ class SearchResult : AppCompatActivity(), SearchResultView  {
         searchResult.text = "About ${data.size} results"
 
         matchAdapter = MatchAdapter(match, {match: Match ->  onItemClicked(match)})
-        rvSearchResultView!!.adapter = matchAdapter
-        rvSearchResultView!!.setHasFixedSize(true)
+        rvSearchResultView.adapter = matchAdapter
+        rvSearchResultView.setHasFixedSize(true)
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(mContext)
 
-        rvSearchResultView!!.layoutManager = layoutManager
+        rvSearchResultView.layoutManager = layoutManager
         matchAdapter.notifyDataSetChanged()
     }
 

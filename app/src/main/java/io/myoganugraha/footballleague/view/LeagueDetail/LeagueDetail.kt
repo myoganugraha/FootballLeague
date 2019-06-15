@@ -18,6 +18,7 @@ import io.myoganugraha.footballleague.network.RetrofitClient
 import io.myoganugraha.footballleague.R
 import io.myoganugraha.footballleague.view.SearchResult.SearchResult
 import kotlinx.android.synthetic.main.activity_league_detail.*
+import org.jetbrains.anko.startActivity
 
 class LeagueDetail : AppCompatActivity(), LeagueDetailView {
 
@@ -39,15 +40,15 @@ class LeagueDetail : AppCompatActivity(), LeagueDetailView {
         leagueNameFromMain = intent.getStringExtra("leagueName")
 
         setSupportActionBar(toolbarLeagueDetail)
-        val actionbar = supportActionBar
-        actionbar!!.setDisplayHomeAsUpEnabled(true)
-        actionbar!!.title = leagueNameFromMain
+
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.title = leagueNameFromMain
+        }
 
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val intent = Intent(this@LeagueDetail, SearchResult::class.java)
-                intent.putExtra("query", query)
-                startActivity(intent)
+                startActivity<SearchResult>("query" to query )
                 return false
             }
 
@@ -62,7 +63,7 @@ class LeagueDetail : AppCompatActivity(), LeagueDetailView {
     private fun setComponents() {
         leagueEmblem = findViewById(R.id.civ_league)
         leagueName = findViewById(R.id.tv_league_name)
-        viewPager = findViewById(R.id.viewpager_league_detail)
+        viewPager = findViewById(R.id.viewpagerLeagueDetail)
         tabLayout = findViewById(R.id.tabLayout)
 
         val retrofitClient = RetrofitClient()

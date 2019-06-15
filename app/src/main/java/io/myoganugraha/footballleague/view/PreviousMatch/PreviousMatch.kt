@@ -60,11 +60,11 @@ class PreviousMatch : Fragment(), PreviousMatchView {
     }
 
     override fun showLoading() {
-        progressBar!!.visibility = View.VISIBLE
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        progressBar!!.visibility = View.GONE
+        progressBar.visibility = View.GONE
     }
 
     override fun showPreviousMatch(data: MutableList<Match>) {
@@ -72,12 +72,12 @@ class PreviousMatch : Fragment(), PreviousMatchView {
         match.addAll(data)
 
         previousMatchAdapter = MatchAdapter(match, {match: Match ->  onItemClicked(match)})
-        rvPreviousMatch!!.adapter = previousMatchAdapter
-        rvPreviousMatch!!.setHasFixedSize(true)
+        rvPreviousMatch.adapter = previousMatchAdapter
+        rvPreviousMatch.setHasFixedSize(true)
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.activity)
 
-        rvPreviousMatch!!.layoutManager = layoutManager
+        rvPreviousMatch.layoutManager = layoutManager
         previousMatchAdapter.notifyDataSetChanged()
     }
 
