@@ -20,6 +20,11 @@ class Favorite : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
 
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.title = "Favorite Match"
+        }
+
         viewPager = viewpager_favorite
         tabLayout = tabs
         setupViewPagger(viewPager)

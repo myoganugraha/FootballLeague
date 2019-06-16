@@ -47,6 +47,7 @@ class MatchDetail : AppCompatActivity(), MatchDetailView {
 
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
+            it.title = "Match Detail"
         }
         setComponents()
         previousMatchFavoriteState()
@@ -156,6 +157,7 @@ class MatchDetail : AppCompatActivity(), MatchDetailView {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.match_detail_menu, menu)
         menuItem = menu
+        setFavorite()
         return true
     }
 
@@ -181,7 +183,7 @@ class MatchDetail : AppCompatActivity(), MatchDetailView {
         database.use {
             val result = select(PreviousMatchFavorite.PREVIOUS_MATCH_FAVORITE_TB).whereArgs("(ID_EVENT = {id})", "id" to matchID)
             val favorite = result.parseList(classParser<PreviousMatchFavorite>())
-            if (!favorite.isEmpty()) isFavorite = true
+            if (favorite.isNotEmpty()) isFavorite = true
         }
     }
 
@@ -189,48 +191,52 @@ class MatchDetail : AppCompatActivity(), MatchDetailView {
         database.use {
             val result = select(NextMatchFavorite.NEXT_MATCH_FAVORITE_TB).whereArgs("(ID_EVENT = {id})", "id" to matchID)
             val favorite = result.parseList(classParser<NextMatchFavorite>())
-            if (!favorite.isEmpty()) isFavorite = true
+            if (favorite.isNotEmpty()) isFavorite = true
         }
     }
 
     private fun addToFavorite() {
-        if (match?.intHomeScore != null) {
-            try {
-                database.use {
-                    insert(
-                        PreviousMatchFavorite.PREVIOUS_MATCH_FAVORITE_TB,
-                        PreviousMatchFavorite.ID_EVENT to match?.idEvent,
-                        PreviousMatchFavorite.ID_HOME_TEAM to match?.idHomeTeam,
-                        PreviousMatchFavorite.ID_AWAY_TEAM to match?.idAwayTeam,
-                        PreviousMatchFavorite.DATE_EVENT to match?.dateEvent,
-                        PreviousMatchFavorite.HOME_TEAM_NAME to match?.strHomeTeam,
-                        PreviousMatchFavorite.AWAY_TEAM_NAME to match?.strAwayTeam,
-                        PreviousMatchFavorite.HOME_TEAM_SCORE to match?.intHomeScore,
-                        PreviousMatchFavorite.AWAY_TEAM_SCORE to match?.intAwayScore
-                    )
-                }
-                Toast.makeText(this, "Previous match added to Favorite", Toast.LENGTH_SHORT).show()
-            } catch (e: SQLiteConstraintException) {
-                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-            }
+        if (match?.idEvent == null) {
+            Toast.makeText(this, "Please wait until data loaded", Toast.LENGTH_SHORT).show()
         } else {
-            try {
-                database.use {
-                    insert(
-                        NextMatchFavorite.NEXT_MATCH_FAVORITE_TB,
-                        NextMatchFavorite.ID_EVENT to match?.idEvent,
-                        NextMatchFavorite.ID_HOME_TEAM to match?.idHomeTeam,
-                        NextMatchFavorite.ID_AWAY_TEAM to match?.idAwayTeam,
-                        NextMatchFavorite.DATE_EVENT to match?.dateEvent,
-                        NextMatchFavorite.HOME_TEAM_NAME to match?.strHomeTeam,
-                        NextMatchFavorite.AWAY_TEAM_NAME to match?.strAwayTeam,
-                        NextMatchFavorite.HOME_TEAM_SCORE to match?.intHomeScore,
-                        NextMatchFavorite.AWAY_TEAM_SCORE to match?.intAwayScore
-                    )
+            if (match?.intHomeScore != null) {
+                try {
+                    database.use {
+                        insert(
+                            PreviousMatchFavorite.PREVIOUS_MATCH_FAVORITE_TB,
+                            PreviousMatchFavorite.ID_EVENT to match?.idEvent,
+                            PreviousMatchFavorite.ID_HOME_TEAM to match?.idHomeTeam,
+                            PreviousMatchFavorite.ID_AWAY_TEAM to match?.idAwayTeam,
+                            PreviousMatchFavorite.DATE_EVENT to match?.dateEvent,
+                            PreviousMatchFavorite.HOME_TEAM_NAME to match?.strHomeTeam,
+                            PreviousMatchFavorite.AWAY_TEAM_NAME to match?.strAwayTeam,
+                            PreviousMatchFavorite.HOME_TEAM_SCORE to match?.intHomeScore,
+                            PreviousMatchFavorite.AWAY_TEAM_SCORE to match?.intAwayScore
+                        )
+                    }
+                    Toast.makeText(this, "Previous match added to Favorite", Toast.LENGTH_SHORT).show()
+                } catch (e: SQLiteConstraintException) {
+                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(this, "Next match added to Favorite", Toast.LENGTH_SHORT).show()
-            } catch (e: SQLiteConstraintException) {
-                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            } else {
+                try {
+                    database.use {
+                        insert(
+                            NextMatchFavorite.NEXT_MATCH_FAVORITE_TB,
+                            NextMatchFavorite.ID_EVENT to match?.idEvent,
+                            NextMatchFavorite.ID_HOME_TEAM to match?.idHomeTeam,
+                            NextMatchFavorite.ID_AWAY_TEAM to match?.idAwayTeam,
+                            NextMatchFavorite.DATE_EVENT to match?.dateEvent,
+                            NextMatchFavorite.HOME_TEAM_NAME to match?.strHomeTeam,
+                            NextMatchFavorite.AWAY_TEAM_NAME to match?.strAwayTeam,
+                            NextMatchFavorite.HOME_TEAM_SCORE to match?.intHomeScore,
+                            NextMatchFavorite.AWAY_TEAM_SCORE to match?.intAwayScore
+                        )
+                    }
+                    Toast.makeText(this, "Next match added to Favorite", Toast.LENGTH_SHORT).show()
+                } catch (e: SQLiteConstraintException) {
+                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

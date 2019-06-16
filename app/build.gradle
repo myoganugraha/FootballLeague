@@ -63,5 +63,6 @@ dependencies {
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     //Anko SQLite
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
-
+    //mockito
+    testImplementation 'org.mockito:mockito-core:2.27.0'
 }

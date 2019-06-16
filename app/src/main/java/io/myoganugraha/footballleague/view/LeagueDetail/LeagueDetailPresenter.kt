@@ -25,7 +25,6 @@ class LeagueDetailPresenter(private  var view: LeagueDetailView, private var ret
                 view.showLeagueDetail(data)
                 view.hideLoading()
             }
-
         })
     }
 }
